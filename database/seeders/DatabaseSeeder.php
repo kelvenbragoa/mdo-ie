@@ -1143,26 +1143,29 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-        DB::table('units')->insert([
-            [
-                'id'=>1,
-                'name'=>'Pendente',
-                'created_at'=>now(),
-                'updated_at'=>now()
-            ],
-            [
-                'id'=>2,
-                'name'=>'Fora de Prazo',
-                'created_at'=>now(),
-                'updated_at'=>now()
-            ],
-            [
-                'id'=>3,
-                'name'=>'Concluido',
-                'created_at'=>now(),
-                'updated_at'=>now()
-            ],
-        ]);
+        // DB::table('units')->insert([
+        //     [
+        //         'id'=>1,
+        //         'name'=>'Pendente',
+        //         'alias'=>'UN',
+        //         'created_at'=>now(),
+        //         'updated_at'=>now()
+        //     ],
+        //     [
+        //         'id'=>2,
+        //         'name'=>'Fora de Prazo',
+        //         'alias'=>'UN',
+        //         'created_at'=>now(),
+        //         'updated_at'=>now()
+        //     ],
+        //     [
+        //         'id'=>3,
+        //         'name'=>'Concluido',
+        //         'alias'=>'UN',
+        //         'created_at'=>now(),
+        //         'updated_at'=>now()
+        //     ],
+        // ]);
 
 
         DB::table('units')->insert([
