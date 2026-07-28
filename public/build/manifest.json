@@ -1,0 +1,57 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-84535efd.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-d2cc0ab8.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "css": [
+      "assets/app-d2cc0ab8.css"
+    ],
+    "dynamicImports": [
+      "resources/js/pages/admin_destination/task_plans/IndexTaskPlan.vue",
+      "resources/js/pages/admin_destination/task_plans/CreateTaskPlan.vue",
+      "resources/js/pages/admin_destination/task_plans/ShowTaskPlan.vue",
+      "resources/js/pages/admin_destination/task_plans/EditTaskPlan.vue"
+    ],
+    "file": "assets/app-49fcb37d.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/pages/admin_destination/task_plans/CreateTaskPlan.vue": {
+    "file": "assets/CreateTaskPlan-9262aa84.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/admin_destination/task_plans/CreateTaskPlan.vue"
+  },
+  "resources/js/pages/admin_destination/task_plans/EditTaskPlan.vue": {
+    "file": "assets/EditTaskPlan-01eed4ef.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/admin_destination/task_plans/EditTaskPlan.vue"
+  },
+  "resources/js/pages/admin_destination/task_plans/IndexTaskPlan.vue": {
+    "file": "assets/IndexTaskPlan-1a011941.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/admin_destination/task_plans/IndexTaskPlan.vue"
+  },
+  "resources/js/pages/admin_destination/task_plans/ShowTaskPlan.vue": {
+    "file": "assets/ShowTaskPlan-6c989495.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/admin_destination/task_plans/ShowTaskPlan.vue"
+  }
+}
