@@ -97,11 +97,7 @@ class GlobalController extends Controller
 
         if($actualUser->signature != null){
            
-                $actualUser->signature = Storage::disk('s3')->temporaryUrl(
-                    $actualUser->signature,
-                    now()->addMinutes(10),
-                    ['ResponseContentDisposition' => 'attachment']
-                );
+                $actualUser->signature = Storage::disk('public')->url($actualUser->signature);
         }
 
         return response()->json(['user'=>$actualUser]);
@@ -119,17 +115,13 @@ class GlobalController extends Controller
                 // foreach($files as $file){
                     $filename = $files->getClientOriginalName();
                     $extension = $files->getClientOriginalExtension();
-                    $imagePath = $files->store('signature','s3');
+                    $imagePath = $files->store('signature','public');
     
                     $user->update([
                         'signature'=>$imagePath,
                     ]);
     
-                    $user->signature = Storage::disk('s3')->temporaryUrl(
-                        $user->signature,
-                        now()->addMinutes(10),
-                        ['ResponseContentDisposition' => 'attachment']
-                    );
+                    $user->signature = Storage::disk('public')->url($user->signature);
                 }
         
 

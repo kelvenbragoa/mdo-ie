@@ -288,22 +288,14 @@ class TaskMcscrController extends Controller
         $openedby = User::find($taskmcscr->opened_by_user_id);
         
         if($openedby && $openedby->signature){
-        $openedby->signature =  Storage::disk('s3')->temporaryUrl(
-            $openedby->signature,
-            now()->addMinutes(10),
-            ['ResponseContentDisposition' => 'attachment']
-        );
+        $openedby->signature = Storage::disk('public')->url($openedby->signature);
     }
 
         $destinationuser = User::where('role_id',8)->where('destination_id',$taskmcscr->destination_id)->first();
 
         if($destinationuser && $destinationuser->signature){
             if($destinationuser->signature){
-                $destinationuser->signature =  Storage::disk('s3')->temporaryUrl(
-                    $destinationuser->signature,
-                    now()->addMinutes(10),
-                    ['ResponseContentDisposition' => 'attachment']
-                );
+                $destinationuser->signature = Storage::disk('public')->url($destinationuser->signature);
             }
             
         }

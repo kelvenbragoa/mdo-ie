@@ -273,28 +273,18 @@ class MCSCRController extends Controller
         $upload = McscrUpload::where('mcscr_id',$id)->get();
 
         foreach ($upload as $item){
-            $item->file = Storage::disk('s3')->temporaryUrl(
-                $item->file,
-                now()->addMinutes(10),
-                ['ResponseContentDisposition' => 'attachment']
-            );
+            $item->file = Storage::disk('public')->url($item->file);
         }
 
         $openedby = User::find($mcscr->opened_by_user_id);
         
-        $openedby->signature =  Storage::disk('s3')->temporaryUrl(
-            $openedby->signature,
-            now()->addMinutes(10),
-            ['ResponseContentDisposition' => 'attachment']
-        );
+        if($openedby->signature != null){
+            $openedby->signature = Storage::disk('public')->url($openedby->signature);
+        }
 
         // $closedby = User::find($mcscr->closed_by_user_id);
         // if($closedby!= null){
-        //     $closedby->signature =  Storage::disk('s3')->temporaryUrl(
-        //         $closedby->signature,
-        //         now()->addMinutes(10),
-        //         ['ResponseContentDisposition' => 'attachment']
-        //     );
+        //     $closedby->signature = Storage::disk('public')->url($closedby->signature);
         // }
         
         
@@ -302,11 +292,7 @@ class MCSCRController extends Controller
 
         if($destinationuser!= null){
             if($destinationuser->signature != null){
-                $destinationuser->signature =  Storage::disk('s3')->temporaryUrl(
-                    $destinationuser->signature,
-                    now()->addMinutes(10),
-                    ['ResponseContentDisposition' => 'attachment']
-                );
+                $destinationuser->signature = Storage::disk('public')->url($destinationuser->signature);
             }
             
         }
@@ -883,11 +869,7 @@ class MCSCRController extends Controller
         $upload = McscrUpload::where('mcscr_id',$id)->get();
 
         foreach ($upload as $item){
-            $item->file = Storage::disk('s3')->temporaryUrl(
-                $item->file,
-                now()->addMinutes(10),
-                ['ResponseContentDisposition' => 'attachment']
-            );
+            $item->file = Storage::disk('public')->url($item->file);
         }
 
         return response()->json([
@@ -914,7 +896,7 @@ class MCSCRController extends Controller
             // foreach($files as $file){
                 $filename = $files->getClientOriginalName();
                 $extension = $files->getClientOriginalExtension();
-                $imagePath = $files->store('mcscr-attachment','s3');
+                $imagePath = $files->store('mcscr-attachment','public');
                  McscrUpload::create([
                         'file' => $imagePath,
                         'mcscr_id' => $data['mcscr_id'],
@@ -925,11 +907,7 @@ class MCSCRController extends Controller
         $upload = McscrUpload::where('mcscr_id',$data['mcscr_id'])->get();
 
         foreach ($upload as $item){
-            $item->file = Storage::disk('s3')->temporaryUrl(
-                $item->file,
-                now()->addMinutes(10),
-                ['ResponseContentDisposition' => 'attachment']
-            );
+            $item->file = Storage::disk('public')->url($item->file);
         }
 
 

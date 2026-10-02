@@ -360,11 +360,7 @@ class EquipmentsController extends Controller
             $profile_picture = '/files/img/sys/industrial-engines-logo.jpg';
         }else{
 
-            $profile->file = Storage::disk('s3')->temporaryUrl(
-                $profile->file,
-                now()->addMinutes(10),
-                ['ResponseContentDisposition' => 'attachment']
-            );
+            $profile->file = Storage::disk('public')->url($profile->file);
 
             $profile_picture = $profile->file;
         }
@@ -372,11 +368,7 @@ class EquipmentsController extends Controller
         $uploads = EquipmentUpload::where('equipment_id',$id)->get();
 
         foreach ($uploads as $item){
-            $item->file = Storage::disk('s3')->temporaryUrl(
-                $item->file,
-                now()->addMinutes(10),
-                ['ResponseContentDisposition' => 'attachment']
-            );
+            $item->file = Storage::disk('public')->url($item->file);
         } 
 
 
@@ -876,11 +868,7 @@ class EquipmentsController extends Controller
         $upload = EquipmentUpload::where('equipment_id',$id)->get();
 
         foreach ($upload as $item){
-            $item->file = Storage::disk('s3')->temporaryUrl(
-                $item->file,
-                now()->addMinutes(10),
-                ['ResponseContentDisposition' => 'attachment']
-            );
+            $item->file = Storage::disk('public')->url($item->file);
         }
 
         return response()->json([
@@ -903,7 +891,7 @@ class EquipmentsController extends Controller
             // foreach($files as $file){
                 $filename = $files->getClientOriginalName();
                 $extension = $files->getClientOriginalExtension();
-                $imagePath = $files->store('equipment-attachment','s3');
+                $imagePath = $files->store('equipment-attachment','public');
                  EquipmentUpload::create([
                         'file' => $imagePath,
                         'equipment_id' => $data['equipment_id'],
@@ -916,11 +904,7 @@ class EquipmentsController extends Controller
         $upload = EquipmentUpload::where('equipment_id',$data['equipment_id'])->get();
 
         foreach ($upload as $item){
-            $item->file = Storage::disk('s3')->temporaryUrl(
-                $item->file,
-                now()->addMinutes(10),
-                ['ResponseContentDisposition' => 'attachment']
-            );
+            $item->file = Storage::disk('public')->url($item->file);
         }
 
 
